@@ -1,0 +1,19 @@
+<section>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="registerForm" class="main-box" *ngIf="!isLoading" (submit)="onRegister()" >
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input  matInput type="email" placeholder="pat@example.com" name="email"  formControlName="email" required />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput type="password" placeholder="pat@example.com" name="password" formControlName="password" required />
+      </mat-form-field>
+  
+      <button  mat-flat-button color="primary" color="primary" type="submit"  >
+       Register
+      </button>
+    </form>
+  </section>
+  

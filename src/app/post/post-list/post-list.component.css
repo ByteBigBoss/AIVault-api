@@ -1,0 +1,32 @@
+:host{
+    display: block;
+    margin-top: 1rem;
+}
+
+.info-text-1{
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2rem;
+    color: rgb(55, 55, 55);
+}
+
+.icon-view{
+    width: 10%;
+}
+
+.icon-view img{
+    width: 100%;
+}
+
+mat-accordion
+{
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+
+mat-paginator{
+  margin-top: 2rem;
+}

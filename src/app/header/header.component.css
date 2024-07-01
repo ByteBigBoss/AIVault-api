@@ -1,0 +1,32 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  backdrop-filter: blur(5px);
+  background-color: transparent;
+  border-bottom: 1px solid;
+  border-color: #00d099;
+  position: sticky;
+}
+
+
+.header-right-side{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 5px;
+  column-gap: 2px;
+  align-items: center;
+}

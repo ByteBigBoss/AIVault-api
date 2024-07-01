@@ -1,0 +1,19 @@
+<header class=" sticky top-0 z-10">
+  <mat-toolbar >
+    <span><a routerLink="/">Ascaorigin M</a></span>
+    <span class="spacer"></span>
+    <ul>
+      <li>
+        <div class="header-right-side">
+          <a *ngIf="userIsAluthenticated" mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+          <a *ngIf="userIsAluthenticated" mat-button routerLink="/register" routerLinkActive="mat-accent">New User</a>
+          <a *ngIf="!userIsAluthenticated" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+          <a mat-button *ngIf="userIsAluthenticated" (click)="onlogOut()">
+            <mat-icon fontIcon="logout" ></mat-icon>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </mat-toolbar>
+  
+</header>

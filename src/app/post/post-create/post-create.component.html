@@ -1,0 +1,204 @@
+<div class="main-div">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="form" (submit)="onAddPost()" *ngIf="!isLoading">
+        <mat-card class="mat-create-card">
+            <div class=" flex nsTsm:flex-col flex-row gap-1  justify-between">
+                <mat-form-field>
+                    <input matInput type="text" name="title" formControlName="title" placeholder="Enter name" />
+                    @if (form.get('title')?.invalid) {
+                    <mat-error>Pleace enter a post title</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="text" name="link" formControlName="link" placeholder="Enter web link" />
+
+                   @if(form.get('link')?.invalid){
+                    <mat-error>Pleace enter a post web link</mat-error>
+                   }
+
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button mat-stroked-button type="button" color="primary" (click)="filePicker.click()">Pick
+                    Image</button>
+                <input type="file" #filePicker (change)="onImagePiked($event)" />
+            </div>
+            <div class="icon-preview" *ngIf="iconPreview !=='' && iconPreview">
+                <img [src]="iconPreview" [alt]="form.value.title">
+            </div>
+            <mat-form-field>
+                <textarea matInput rows="6" name="content" formControlName="content"></textarea>
+                @if (form.get('content')?.invalid) {
+                <mat-error>Pleace enter a post content</mat-error>
+                }
+            </mat-form-field>
+
+            <div class=" flex flex-row justify-between gap-2 items-center">
+
+                <mat-form-field *ngIf="!isCategoryInput && mode==='create'">
+                    <mat-label>Select category</mat-label>
+                    <mat-select>
+                        <mat-option (onSelectionChange)="setCategoryId(category.id)" *ngFor="let category of categories"
+                            [value]="category.id">{{category.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="!isCategoryInput && mode==='edit'">
+                    <mat-label>Select category</mat-label>
+                    <mat-select [value]="getUpdateCategory().id">
+                        <mat-option (onSelectionChange)="setCategoryId(category.id)" *ngFor="let category of categories"
+                            [value]="category.id">{{category.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                @if (isCategoryInput && mode==='create') {
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Enter category" #ciput />
+                </mat-form-field>
+                <button (click)="onAddCategory(ciput)" mat-flat-button color="primary ">Add</button>
+                }
+
+                <button (click)="onCategoryInputView()" mat-flat-button color="primary"
+                    *ngIf="!isCategoryInput && mode ==='create'">Add new
+                    category</button>
+
+            </div>
+
+            <hr />
+            <!-- advantage -->
+
+            <div class=" flex flex-row w-full justify-center gap-4 items-center">
+                <div
+                    class="flex flex-row justify-center items-center box-border p-[10px] bg-[#ffc859] w-[50px] h-[50px] rounded-full">
+                    <span class=" text-lg text-[#0C171E]  font-bold">{{advantages.length}}</span>
+                </div>
+                <span class="text-[#E6FAF5] text-lg">Advantages</span>
+            </div>
+
+            <div class="flex flex-row  justify-between gap-2 items-center" *ngIf="advantages.length<3">
+                <div class="flex flex-col w-full">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Enter advantage" #advantage />
+                        <mat-error>Pleace enter a advantage</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput rows="2" placeholder="Enter discription" #discription></textarea>
+                        <mat-error>Pleace enter a discription</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-flat-button color="primary" (click)="onAddAdvantages(advantage,discription)">Add</button>
+            </div>
+            <!-- advantage -->
+
+
+            <hr />
+
+
+            <!-- advantage -->
+
+            <div class=" flex flex-row w-full justify-center gap-4 items-center">
+                <div
+                    class="flex flex-row justify-center items-center box-border p-[10px] bg-[#ffb92c] w-[50px] h-[50px] rounded-full">
+                    <span class=" text-lg text-[#0C171E]  font-bold">{{keyFeatures.length}}</span>
+                </div>
+                <span class="text-[#E6FAF5] text-lg">Key Features</span>
+            </div>
+
+            <div class="flex flex-row  justify-between gap-2 items-center" *ngIf="keyFeatures.length<3">
+                <div class="flex flex-col w-full">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Enter advantage" #keyfeature />
+                        <mat-error>Pleace enter a key feature</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-flat-button color="primary" (click)="onAddKeyFeature(keyfeature)">Add</button>
+            </div>
+            <!-- advantage -->
+
+
+            <hr />
+
+
+
+            <!-- Use Cases -->
+            <div class="flex flex-row  justify-between gap-2 items-center">
+                <div class="flex flex-col w-full">
+                    <mat-form-field>
+                        <input matInput type="text" name="customerSup" placeholder="customer support" #customerSup />
+                        <mat-error>Pleace enter a advantage</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" name="link" placeholder="content creation" #contentCreation />
+                        <mat-error>Pleace enter a discription</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" name="link" placeholder="coding assistance" #codingAsstance />
+                        <mat-error>Pleace enter a discription</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-flat-button color="primary"
+                    (click)="onAddUsecase(customerSup,contentCreation,codingAsstance)">Add</button>
+            </div>
+            <!-- Use Cases -->
+
+
+
+        </mat-card>
+        <!-- <hr> -->
+        <button mat-raised-button color="primary" type="submit" class="btn-new mt-[1rem] mb-[1rem]">Save Post</button>
+    </form>
+
+    <!-- <p>{{newPost}}</p> -->
+</div>
+
+
+<!-- <div class="main-div">
+    <mat-card>
+        <mat-form-field>
+            <input matInput type="text" [(ngModel)]="enterdTitle"/>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput rows="10" [(ngModel)]="enteredContent"></textarea>
+        </mat-form-field>
+    </mat-card>
+    <hr>
+    <button mat-raised-button color="primary" (click)="onAddPost()" class="btn-new">Save Post</button>
+</div> -->
+
+
+
+<!-- <textarea rows="10" [value]="newPost" #postInput></textarea>
+<hr>
+<button (click)="onAddPost(postInput)">Save Post</button>
+<p>{{newPost}}</p> -->
+
+
+<!-- ngForm -->
+<!--
+<div class="main-div">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form (submit)="onAddPost(postForm)" #postForm='ngForm' *ngIf="!isLoading">
+        <mat-card class="mat-create-card">
+            <mat-form-field>
+                <input matInput type="text" name="title" required [ngModel]="post?.title" #title='ngModel'/>
+                @if (title.invalid) {
+                    <mat-error>Pleace enter a post title</mat-error>
+                  }
+            </mat-form-field>
+            <div>
+                <button mat-stroked-button type="button" color="primary" (click)="filePicker.click()">Pick Image</button>
+                <input type="file" #filePicker/>
+            </div>
+            <mat-form-field>
+                <textarea matInput rows="10" name="content" required [ngModel]="post?.content" #content='ngModel'></textarea>
+                @if (content.invalid) {
+                    <mat-error>Pleace enter a post content</mat-error>
+                  }
+            </mat-form-field>
+        </mat-card>
+        <hr>
+        <button mat-raised-button color="primary" type="submit" class="btn-new">Save Post</button>
+    </form>
+</div> -->

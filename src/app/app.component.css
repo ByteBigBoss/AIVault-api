@@ -1,0 +1,12 @@
+main {
+  margin-top: 2rem;
+  width: 80%;
+  margin: auto;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+main::-webkit-scrollbar{
+  display: none;
+}
