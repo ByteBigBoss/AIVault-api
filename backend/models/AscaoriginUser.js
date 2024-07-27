@@ -31,7 +31,7 @@ const AscaoriginUserSchema = new Schema({
     },
 })
 
-userSchema.plugin(uniqueValideror);
+AscaoriginUserSchema.plugin(uniqueValideror);
 
 const AscaoriginUser = mongoose.model("AscaoriginUser", AscaoriginUserSchema);
 module.exports = AscaoriginUser;

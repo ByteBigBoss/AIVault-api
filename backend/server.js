@@ -29,7 +29,7 @@ mongoose.connect(URL).then(() => {
   debug("MongoDB connection error:", error);
 });
 
-const allowedOrigins = ["http://localhost:4200","http://localhost:3000"];
+const allowedOrigins = ["http://localhost:4200/","http://localhost:3000/"];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
@@ -46,6 +46,33 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+// const corsOptions = {
+//   origin: 'http://localhost:4200',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true,
+//   optionsSuccessStatus: 200
+// };
+
+// app.use(cors(corsOptions))
+
+
+
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+//   );
+//   next();
+// });
+
+
 
 // routers
 const postRouter = require("./routes/posts")

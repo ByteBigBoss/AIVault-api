@@ -4,7 +4,9 @@ import { Subject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment} from "../../environments/environment"
-const BACKEND_URL = "http://ascaorigin.ap-south-1.elasticbeanstalk.com/api"+ "/post/"
+// const BACKEND_URL = "http://ascaorigin.ap-south-1.elasticbeanstalk.com/api"+ "/post/"
+
+const BACKEND_URL = "http://localhost:8001/api"+ "/post/"
 
 @Injectable({ providedIn: 'root' })
 export class PostService {

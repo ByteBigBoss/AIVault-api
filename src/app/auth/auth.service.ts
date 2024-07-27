@@ -8,9 +8,10 @@ import { response } from 'express';
 import { environment} from "../../environments/environment";
 
 
-const BACKEND_URL = "http://ascaorigin.ap-south-1.elasticbeanstalk.com/api" + "/user/";
+// const BACKEND_URL = "http://ascaorigin.ap-south-1.elasticbeanstalk.com/api" + "/user/";
 
 
+const BACKEND_URL = "http://localhost:8001/api"+ "/user/"
 
 @Injectable({
   providedIn: 'root'
